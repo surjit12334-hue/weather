@@ -6,75 +6,120 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
   min-height: 100vh;
   color: #fff;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(120, 80, 255, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 120, 200, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(80, 200, 255, 0.08) 0%, transparent 40%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .container {
-  max-width: 900px;
+  max-width: 950px;
   margin: 0 auto;
-  padding: 30px 20px;
+  padding: 40px 20px;
+  position: relative;
+  z-index: 1;
 }
 
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+  animation: fadeInDown 0.8s ease;
 }
 
 header h1 {
-  font-size: 1.6rem;
-  font-weight: 600;
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #fff 0%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
 }
 
 .search-bar {
   display: flex;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50px;
   overflow: hidden;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.search-bar:focus-within {
+  border-color: rgba(167, 139, 250, 0.4);
+  box-shadow: 0 8px 32px rgba(120, 80, 255, 0.15);
 }
 
 .search-bar input {
   background: transparent;
   border: none;
-  padding: 10px 18px;
+  padding: 14px 22px;
   color: #fff;
   font-size: 0.95rem;
   outline: none;
-  width: 220px;
+  width: 240px;
 }
 
 .search-bar input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.4);
 }
 
 .search-bar button {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(120, 80, 255, 0.3);
   border: none;
   color: #fff;
-  padding: 10px 16px;
+  padding: 14px 20px;
   cursor: pointer;
-  font-size: 1rem;
-  transition: background 0.3s;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
 }
 
 .search-bar button:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(120, 80, 255, 0.5);
 }
 
 /* Current Weather */
 .current-weather {
   display: flex;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
-  padding: 35px;
-  margin-bottom: 30px;
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 28px;
+  padding: 40px;
+  margin-bottom: 35px;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: fadeInUp 0.8s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.current-weather::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
 }
 
 .current-left {
@@ -82,20 +127,25 @@ header h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-right: 40px;
-  min-width: 140px;
+  margin-right: 50px;
+  min-width: 160px;
 }
 
 .weather-icon {
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
   margin-bottom: 0;
-  filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.2));
+  animation: float 4s ease-in-out infinite;
 }
 
 .temperature {
-  font-size: 3.5rem;
-  font-weight: 700;
+  font-size: 4rem;
+  font-weight: 800;
+  background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.7) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .current-right {
@@ -103,161 +153,179 @@ header h1 {
 }
 
 .city-name {
-  font-size: 1.8rem;
-  font-weight: 600;
-  margin-bottom: 4px;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  letter-spacing: -0.5px;
 }
 
 .date {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.5);
   font-size: 0.95rem;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .condition {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 1.1rem;
-  margin-bottom: 20px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.15rem;
+  margin-bottom: 25px;
+  font-weight: 500;
 }
 
 .details {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
+  gap: 12px;
 }
 
 .detail-item {
   display: flex;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 12px;
-  padding: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 16px 12px;
   text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.3s ease;
+}
+
+.detail-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
 }
 
 .detail-label {
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.4);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 6px;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  font-weight: 600;
 }
 
 .detail-value {
-  font-size: 1.05rem;
-  font-weight: 600;
+  font-size: 1.1rem;
+  font-weight: 700;
 }
 
 /* Sections */
 h3 {
-  font-size: 1.15rem;
-  font-weight: 600;
-  margin-bottom: 15px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: -0.3px;
 }
 
 .error-msg {
   display: none;
   text-align: center;
-  background: rgba(255, 80, 80, 0.2);
-  border: 1px solid rgba(255, 80, 80, 0.4);
+  background: rgba(255, 80, 80, 0.15);
+  border: 1px solid rgba(255, 80, 80, 0.3);
   color: #ff8a8a;
-  padding: 12px;
-  border-radius: 12px;
+  padding: 14px;
+  border-radius: 16px;
   margin-bottom: 20px;
   font-size: 0.95rem;
+  backdrop-filter: blur(10px);
 }
 
 /* Hourly Forecast */
 .hourly-section {
-  margin-bottom: 30px;
+  margin-bottom: 35px;
+  animation: fadeInUp 0.9s ease;
 }
 
 .hourly-grid {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  gap: 10px;
+  gap: 12px;
 }
 
 .hour-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  padding: 16px 8px;
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  padding: 18px 10px;
+  backdrop-filter: blur(15px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: transform 0.2s, background 0.3s;
+  transition: all 0.3s ease;
 }
 
 .hour-card:hover {
-  transform: translateY(-3px);
-  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
 }
 
 .hour-time {
   font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.6);
-  margin-bottom: 10px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 12px;
+  font-weight: 500;
 }
 
 .hour-icon {
   font-size: 1.6rem;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .hour-icon-img {
-  width: 50px;
-  height: 50px;
+  width: 55px;
+  height: 55px;
 }
 
 .hour-temp {
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1.15rem;
+  font-weight: 700;
 }
 
 /* Weekly Forecast */
 .weekly-section {
   margin-bottom: 20px;
+  animation: fadeInUp 1s ease;
 }
 
 .weekly-grid {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .day-card {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 14px;
-  padding: 16px 24px;
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 18px;
+  padding: 18px 28px;
+  backdrop-filter: blur(15px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: transform 0.2s, background 0.3s;
+  transition: all 0.3s ease;
 }
 
 .day-card:hover {
-  transform: translateX(4px);
-  background: rgba(255, 255, 255, 0.14);
+  transform: translateX(8px);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
 .day-name {
-  width: 60px;
-  font-weight: 600;
+  width: 70px;
+  font-weight: 700;
   font-size: 0.95rem;
 }
 
 .day-icon-img {
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   margin: 0 20px;
 }
 
 .day-condition {
-  width: 100px;
-  color: rgba(255, 255, 255, 0.7);
+  width: 120px;
+  color: rgba(255, 255, 255, 0.6);
   font-size: 0.9rem;
 }
 
@@ -265,59 +333,92 @@ h3 {
   flex: 1;
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
   margin-left: 20px;
 }
 
 .temp-low {
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.5);
-  width: 32px;
+  color: rgba(255, 255, 255, 0.4);
+  width: 36px;
   text-align: right;
+  font-weight: 500;
 }
 
 .temp-high {
   font-size: 0.9rem;
-  font-weight: 600;
-  width: 32px;
+  font-weight: 700;
+  width: 36px;
   text-align: right;
 }
 
 .temp-bar {
   flex: 1;
-  height: 6px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 3px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
   overflow: hidden;
 }
 
 .temp-fill {
   height: 100%;
-  border-radius: 3px;
-  background: linear-gradient(90deg, #4facfe, #f9d423);
+  border-radius: 4px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   header {
     flex-direction: column;
-    gap: 15px;
+    gap: 18px;
   }
 
   .search-bar input {
-    width: 180px;
+    width: 200px;
   }
 
   .current-weather {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 25px;
+    padding: 30px;
   }
 
   .current-left {
     margin-right: 0;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
   }
 
   .details {
@@ -339,10 +440,10 @@ h3 {
   }
 
   .temperature {
-    font-size: 2.8rem;
+    font-size: 3rem;
   }
 
   .city-name {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
   }
 }
