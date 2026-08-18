@@ -7,14 +7,29 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Animated Weather Background -->
+  <div class="weather-bg" id="weatherBg">
+    <div class="bg-layer" id="bgLayer"></div>
+  </div>
+
   <div class="container">
     <header>
       <h1>Weather Forecast</h1>
-      <div class="search-bar">
-        <input type="text" placeholder="Search city..." id="cityInput">
-        <button id="searchBtn">&#128269;</button>
+      <div class="header-controls">
+        <div class="search-bar">
+          <button id="gpsBtn" title="Use my location">&#128205;</button>
+          <input type="text" placeholder="Search city..." id="cityInput">
+          <button id="searchBtn">&#128269;</button>
+        </div>
+        <button class="unit-toggle" id="unitToggle" title="Toggle units">&deg;C</button>
       </div>
     </header>
+
+    <!-- Recent Searches -->
+    <div class="recent-searches" id="recentSearches" style="display:none;">
+      <span class="recent-label">Recent:</span>
+      <div class="recent-list" id="recentList"></div>
+    </div>
 
     <p class="error-msg" id="errorMsg"></p>
 
@@ -45,6 +60,14 @@
             <div class="detail-item">
               <span class="detail-label">Pressure</span>
               <span class="detail-value" id="pressure">-- hPa</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Sunrise</span>
+              <span class="detail-value" id="sunrise">--</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Sunset</span>
+              <span class="detail-value" id="sunset">--</span>
             </div>
           </div>
         </div>
