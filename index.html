@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Forecast</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Weather Forecast</h1>
+      <div class="search-bar">
+        <input type="text" placeholder="Search city..." id="cityInput">
+        <button id="searchBtn">&#128269;</button>
+      </div>
+    </header>
+
+    <p class="error-msg" id="errorMsg"></p>
+
+    <main>
+      <!-- Current Weather -->
+      <section class="current-weather" id="currentWeather">
+        <div class="current-left">
+          <img class="weather-icon" id="weatherIcon" src="" alt="weather icon">
+          <span class="temperature" id="temperature">--&deg;C</span>
+        </div>
+        <div class="current-right">
+          <h2 class="city-name" id="cityName">--</h2>
+          <p class="date" id="date">--</p>
+          <p class="condition" id="condition">--</p>
+          <div class="details">
+            <div class="detail-item">
+              <span class="detail-label">Humidity</span>
+              <span class="detail-value" id="humidity">--%</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Wind</span>
+              <span class="detail-value" id="wind">-- km/h</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Feels Like</span>
+              <span class="detail-value" id="feelsLike">--&deg;</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Pressure</span>
+              <span class="detail-value" id="pressure">-- hPa</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Hourly Forecast -->
+      <section class="hourly-section">
+        <h3>Hourly Forecast</h3>
+        <div class="hourly-grid" id="hourlyGrid"></div>
+      </section>
+
+      <!-- 5-Day Forecast -->
+      <section class="weekly-section">
+        <h3>5-Day Forecast</h3>
+        <div class="weekly-grid" id="weeklyGrid"></div>
+      </section>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
